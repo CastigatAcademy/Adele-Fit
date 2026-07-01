@@ -102,6 +102,20 @@ html,body{margin:0;padding:0;background:var(--bg);color:var(--text);font-family:
 .badge-unlock-name{position:relative;z-index:2;font-family:'Anton','Inter',sans-serif;font-size:42px;color:#fff;line-height:1.05;margin-top:8px}
 .badge-continue{position:relative;z-index:2;margin-top:42px;background:var(--accent);color:#000;border:none;border-radius:99px;padding:15px 42px;font-size:15px;font-weight:800;font-family:inherit;cursor:pointer}
 .badge-continue:active{opacity:.85}
+
+/* ── Séance terminée (semaine en cours) ── */
+.wo-block.done-week{opacity:.5;transition:opacity .3s}
+.wo-block.done-week .finish-btn,.wo-block.done-week .journal-btn{display:none!important}
+.wo-done-badge{display:inline-block;font-size:10px;font-weight:800;background:var(--eau);color:#000;border-radius:4px;padding:1px 7px;margin-left:8px;vertical-align:middle;letter-spacing:.02em}
+
+/* ── Exercice fait : ligne estompée (coche verte conservée) ── */
+.ex-row.done .ex-info{opacity:.45;transition:opacity .2s}
+.ex-row.done .ex-name{text-decoration:line-through;text-decoration-color:rgba(255,255,255,.3)}
+.ex-row.done .ex-sets-badge{opacity:.4}
+
+/* ── Consigne "répéter X fois" (pas une série cochable) ── */
+.series-note{margin:4px 0 8px;padding:11px 14px;background:rgba(216,255,0,.06);border:1px solid rgba(216,255,0,.16);border-radius:12px;font-size:12.5px;color:var(--accent);font-weight:600;line-height:1.45;display:flex;gap:8px;align-items:flex-start}
+.series-note .sn-ico{flex-shrink:0}
 </style>
 </head>
 <body>
@@ -762,10 +776,7 @@ html,body{margin:0;padding:0;background:var(--bg);color:var(--text);font-family:
           <div class="series-top-row"><span class="series-num">30 secondes</span><span class="prog-badge new" id="pb_exA7_1">Nouveau</span></div>
           <div class="series-bottom-row"><span class="series-weight-wrap"><button class="weight-adj" onclick="adjustWeight('exA7',1,-2.5,'Jambe gauche')">−</button><span class="series-weight" id="sw_exA7_1" data-default="Jambe gauche" onclick="editWeight('exA7',1,'Jambe gauche')">Jambe gauche</span><button class="weight-adj" onclick="adjustWeight('exA7',1,2.5,'Jambe gauche')">+</button></span><span class="series-reps">Meme exercise</span><div class="series-check" onclick="toggleSeriesCheck(this)"></div></div>
         </div>
-          <div class="series-row">
-          <div class="series-top-row"><span class="series-num">Repete</span><span class="prog-badge new" id="pb_exA7_2">Nouveau</span></div>
-          <div class="series-bottom-row"><span class="series-weight-wrap"><button class="weight-adj" onclick="adjustWeight('exA7',2,-2.5,'3 fois')">−</button><span class="series-weight" id="sw_exA7_2" data-default="3 fois" onclick="editWeight('exA7',2,'3 fois')">3 fois</span><button class="weight-adj" onclick="adjustWeight('exA7',2,2.5,'3 fois')">+</button></span><span class="series-reps">Progression: yeux fermes des que c est facile</span><div class="series-check" onclick="toggleSeriesCheck(this)"></div></div>
-        </div></div>
+          <div class="series-note"><span class="sn-ico">↻</span><span>Répéter l'ensemble 3 fois · Progression: yeux fermes des que c est facile</span></div></div>
           <div class="serie-timer-wrap" id="stw_exA7">
             <div class="serie-timer-circle">
               <svg viewBox="0 0 56 56">
@@ -988,15 +999,15 @@ html,body{margin:0;padding:0;background:var(--bg);color:var(--text);font-family:
           </div>
           <div class="series-block"><div class="series-row">
           <div class="series-top-row"><span class="series-num">Serie 1</span><span class="prog-badge new" id="pb_exB3_0">Nouveau</span></div>
-          <div class="series-bottom-row"><span class="series-weight-wrap"><button class="weight-adj" onclick="adjustWeight('exB3',0,-2.5,'15 kg')">−</button><span class="series-weight" id="sw_exB3_0" data-default="15 kg" onclick="editWeight('exB3',0,'15 kg')">15 kg</span><button class="weight-adj" onclick="adjustWeight('exB3',0,2.5,'15 kg')">+</button></span><span class="series-reps">15 repetitions - trouver la position</span><div class="series-check" onclick="toggleSeriesCheck(this)"></div></div>
+          <div class="series-bottom-row"><span class="series-weight-wrap"><button class="weight-adj" onclick="adjustWeight('exB3',0,-2.5,'12 kg')">−</button><span class="series-weight" id="sw_exB3_0" data-default="12 kg" onclick="editWeight('exB3',0,'12 kg')">12 kg</span><button class="weight-adj" onclick="adjustWeight('exB3',0,2.5,'12 kg')">+</button></span><span class="series-reps">15 repetitions - trouver la position</span><div class="series-check" onclick="toggleSeriesCheck(this)"></div></div>
         </div>
           <div class="series-row">
           <div class="series-top-row"><span class="series-num">Serie 2</span><span class="prog-badge new" id="pb_exB3_1">Nouveau</span></div>
-          <div class="series-bottom-row"><span class="series-weight-wrap"><button class="weight-adj" onclick="adjustWeight('exB3',1,-2.5,'20 kg')">−</button><span class="series-weight" id="sw_exB3_1" data-default="20 kg" onclick="editWeight('exB3',1,'20 kg')">20 kg</span><button class="weight-adj" onclick="adjustWeight('exB3',1,2.5,'20 kg')">+</button></span><span class="series-reps">12 repetitions</span><div class="series-check" onclick="toggleSeriesCheck(this)"></div></div>
+          <div class="series-bottom-row"><span class="series-weight-wrap"><button class="weight-adj" onclick="adjustWeight('exB3',1,-2.5,'15 kg')">−</button><span class="series-weight" id="sw_exB3_1" data-default="15 kg" onclick="editWeight('exB3',1,'15 kg')">15 kg</span><button class="weight-adj" onclick="adjustWeight('exB3',1,2.5,'15 kg')">+</button></span><span class="series-reps">12 repetitions</span><div class="series-check" onclick="toggleSeriesCheck(this)"></div></div>
         </div>
           <div class="series-row">
           <div class="series-top-row"><span class="series-num">Serie 3</span><span class="prog-badge new" id="pb_exB3_2">Nouveau</span></div>
-          <div class="series-bottom-row"><span class="series-weight-wrap"><button class="weight-adj" onclick="adjustWeight('exB3',2,-2.5,'20 kg')">−</button><span class="series-weight" id="sw_exB3_2" data-default="20 kg" onclick="editWeight('exB3',2,'20 kg')">20 kg</span><button class="weight-adj" onclick="adjustWeight('exB3',2,2.5,'20 kg')">+</button></span><span class="series-reps">10 repetitions</span><div class="series-check" onclick="toggleSeriesCheck(this)"></div></div>
+          <div class="series-bottom-row"><span class="series-weight-wrap"><button class="weight-adj" onclick="adjustWeight('exB3',2,-2.5,'15 kg')">−</button><span class="series-weight" id="sw_exB3_2" data-default="15 kg" onclick="editWeight('exB3',2,'15 kg')">15 kg</span><button class="weight-adj" onclick="adjustWeight('exB3',2,2.5,'15 kg')">+</button></span><span class="series-reps">10 repetitions</span><div class="series-check" onclick="toggleSeriesCheck(this)"></div></div>
         </div></div>
           <div class="serie-timer-wrap" id="stw_exB3">
             <div class="serie-timer-circle">
@@ -1130,15 +1141,15 @@ html,body{margin:0;padding:0;background:var(--bg);color:var(--text);font-family:
           </div>
           <div class="series-block"><div class="series-row">
           <div class="series-top-row"><span class="series-num">Planche 1</span><span class="prog-badge new" id="pb_exB5_0">Nouveau</span></div>
-          <div class="series-bottom-row"><span class="series-weight-wrap"><button class="weight-adj" onclick="adjustWeight('exB5',0,-2.5,'Poids du corps')">−</button><span class="series-weight" id="sw_exB5_0" data-default="Poids du corps" onclick="editWeight('exB5',0,'Poids du corps')">Poids du corps</span><button class="weight-adj" onclick="adjustWeight('exB5',0,2.5,'Poids du corps')">+</button></span><span class="series-reps">40 secondes - corps ligne droite</span><div class="series-check" onclick="toggleSeriesCheck(this)"></div></div>
+          <div class="series-bottom-row"><span class="series-weight-wrap"><button class="weight-adj" onclick="adjustWeight('exB5',0,-5,'40 s')">−</button><span class="series-weight" id="sw_exB5_0" data-default="40 s" onclick="editWeight('exB5',0,'40 s')">40 s</span><button class="weight-adj" onclick="adjustWeight('exB5',0,5,'40 s')">+</button></span><span class="series-reps">Corps ligne droite - gainage</span><div class="series-check" onclick="toggleSeriesCheck(this)"></div></div>
         </div>
           <div class="series-row">
           <div class="series-top-row"><span class="series-num">Planche 2</span><span class="prog-badge new" id="pb_exB5_1">Nouveau</span></div>
-          <div class="series-bottom-row"><span class="series-weight-wrap"><button class="weight-adj" onclick="adjustWeight('exB5',1,-2.5,'Poids du corps')">−</button><span class="series-weight" id="sw_exB5_1" data-default="Poids du corps" onclick="editWeight('exB5',1,'Poids du corps')">Poids du corps</span><button class="weight-adj" onclick="adjustWeight('exB5',1,2.5,'Poids du corps')">+</button></span><span class="series-reps">40 secondes</span><div class="series-check" onclick="toggleSeriesCheck(this)"></div></div>
+          <div class="series-bottom-row"><span class="series-weight-wrap"><button class="weight-adj" onclick="adjustWeight('exB5',1,-5,'40 s')">−</button><span class="series-weight" id="sw_exB5_1" data-default="40 s" onclick="editWeight('exB5',1,'40 s')">40 s</span><button class="weight-adj" onclick="adjustWeight('exB5',1,5,'40 s')">+</button></span><span class="series-reps">Tiens la position</span><div class="series-check" onclick="toggleSeriesCheck(this)"></div></div>
         </div>
           <div class="series-row">
           <div class="series-top-row"><span class="series-num">Planche 3</span><span class="prog-badge new" id="pb_exB5_2">Nouveau</span></div>
-          <div class="series-bottom-row"><span class="series-weight-wrap"><button class="weight-adj" onclick="adjustWeight('exB5',2,-2.5,'Poids du corps')">−</button><span class="series-weight" id="sw_exB5_2" data-default="Poids du corps" onclick="editWeight('exB5',2,'Poids du corps')">Poids du corps</span><button class="weight-adj" onclick="adjustWeight('exB5',2,2.5,'Poids du corps')">+</button></span><span class="series-reps">40 secondes - si trop difficile = 20s</span><div class="series-check" onclick="toggleSeriesCheck(this)"></div></div>
+          <div class="series-bottom-row"><span class="series-weight-wrap"><button class="weight-adj" onclick="adjustWeight('exB5',2,-5,'40 s')">−</button><span class="series-weight" id="sw_exB5_2" data-default="40 s" onclick="editWeight('exB5',2,'40 s')">40 s</span><button class="weight-adj" onclick="adjustWeight('exB5',2,5,'40 s')">+</button></span><span class="series-reps">Si trop dur : descends \u00e0 20s</span><div class="series-check" onclick="toggleSeriesCheck(this)"></div></div>
         </div></div>
           <div class="serie-timer-wrap" id="stw_exB5">
             <div class="serie-timer-circle">
@@ -1452,10 +1463,7 @@ html,body{margin:0;padding:0;background:var(--bg);color:var(--text);font-family:
           <div class="series-top-row"><span class="series-num">10 reps</span><span class="prog-badge new" id="pb_exC3_1">Nouveau</span></div>
           <div class="series-bottom-row"><span class="series-weight-wrap"><button class="weight-adj" onclick="adjustWeight('exC3',1,-2.5,'Jambe gauche')">−</button><span class="series-weight" id="sw_exC3_1" data-default="Jambe gauche" onclick="editWeight('exC3',1,'Jambe gauche')">Jambe gauche</span><button class="weight-adj" onclick="adjustWeight('exC3',1,2.5,'Jambe gauche')">+</button></span><span class="series-reps">Meme exercise</span><div class="series-check" onclick="toggleSeriesCheck(this)"></div></div>
         </div>
-          <div class="series-row">
-          <div class="series-top-row"><span class="series-num">Repete</span><span class="prog-badge new" id="pb_exC3_2">Nouveau</span></div>
-          <div class="series-bottom-row"><span class="series-weight-wrap"><button class="weight-adj" onclick="adjustWeight('exC3',2,-2.5,'3 fois')">−</button><span class="series-weight" id="sw_exC3_2" data-default="3 fois" onclick="editWeight('exC3',2,'3 fois')">3 fois</span><button class="weight-adj" onclick="adjustWeight('exC3',2,2.5,'3 fois')">+</button></span><span class="series-reps">Semaine 5+: avec halteres 4-6 kg</span><div class="series-check" onclick="toggleSeriesCheck(this)"></div></div>
-        </div></div>
+          <div class="series-note"><span class="sn-ico">↻</span><span>Répéter l'ensemble 3 fois · Semaine 5+: avec halteres 4-6 kg</span></div></div>
           <div class="serie-timer-wrap" id="stw_exC3">
             <div class="serie-timer-circle">
               <svg viewBox="0 0 56 56">
@@ -1595,10 +1603,7 @@ html,body{margin:0;padding:0;background:var(--bg);color:var(--text);font-family:
           <div class="series-top-row"><span class="series-num">30 secondes</span><span class="prog-badge new" id="pb_exC5_1">Nouveau</span></div>
           <div class="series-bottom-row"><span class="series-weight-wrap"><button class="weight-adj" onclick="adjustWeight('exC5',1,-2.5,'Cote gauche')">−</button><span class="series-weight" id="sw_exC5_1" data-default="Cote gauche" onclick="editWeight('exC5',1,'Cote gauche')">Cote gauche</span><button class="weight-adj" onclick="adjustWeight('exC5',1,2.5,'Cote gauche')">+</button></span><span class="series-reps">Meme exercise</span><div class="series-check" onclick="toggleSeriesCheck(this)"></div></div>
         </div>
-          <div class="series-row">
-          <div class="series-top-row"><span class="series-num">Repete</span><span class="prog-badge new" id="pb_exC5_2">Nouveau</span></div>
-          <div class="series-bottom-row"><span class="series-weight-wrap"><button class="weight-adj" onclick="adjustWeight('exC5',2,-2.5,'3 fois')">−</button><span class="series-weight" id="sw_exC5_2" data-default="3 fois" onclick="editWeight('exC5',2,'3 fois')">3 fois</span><button class="weight-adj" onclick="adjustWeight('exC5',2,2.5,'3 fois')">+</button></span><span class="series-reps">Semaine 3+: jambes tendues</span><div class="series-check" onclick="toggleSeriesCheck(this)"></div></div>
-        </div></div>
+          <div class="series-note"><span class="sn-ico">↻</span><span>Répéter l'ensemble 3 fois · Semaine 3+: jambes tendues</span></div></div>
           <div class="serie-timer-wrap" id="stw_exC5">
             <div class="serie-timer-circle">
               <svg viewBox="0 0 56 56">
@@ -1717,6 +1722,11 @@ html,body{margin:0;padding:0;background:var(--bg);color:var(--text);font-family:
     <div id="journal-list-sport" style="padding:0 16px">
       <div style="padding:30px 0;text-align:center;font-size:13px;color:var(--text2)">Tes retours apparaîtront ici après chaque séance.</div>
     </div>
+
+    <div class="slabel" style="margin-top:16px">Progression de force</div>
+    <div id="progress-list" style="padding:0 16px 4px">
+      <div style="padding:24px 0;text-align:center;font-size:13px;color:var(--text2)">Valide tes séances : ta charge et ta durée par exercice s'enregistreront ici, avec la courbe d'évolution.</div>
+    </div>
   
 
 
@@ -1829,7 +1839,19 @@ function showBilan(seance, totalEx, doneEx, deja) {
     'Le foot approche. Tu le sens ?',
   ];
   var msgEl = document.getElementById('bilanMsg');
-  if (msgEl) msgEl.textContent = '"' + msgs[Math.min(sessions - 1, msgs.length - 1)] + '"';
+  var motiv = [
+    "S\u00e9ance pli\u00e9e. T'as assur\u00e9.",
+    "Ton genou se reconstruit, s\u00e9ance apr\u00e8s s\u00e9ance.",
+    "T'es venue, t'as fait le taf. Le reste suit.",
+    "Un pas de plus vers le terrain.",
+    "Pas de s\u00e9ance parfaite, juste des s\u00e9ances faites. Et celle-l\u00e0 est faite.",
+    "Discipline > motivation. Et t'en as eu aujourd'hui.",
+    "Le foot de septembre se joue maintenant.",
+    "Fi\u00e8re de toi. Continue comme \u00e7a.",
+    "Chaque s\u00e9ance compte. Celle-l\u00e0 aussi.",
+    "Ton corps bosse pour toi, l\u00e0, maintenant."
+  ];
+  if (msgEl) msgEl.textContent = '"' + motiv[Math.floor(Math.random() * motiv.length)] + '"';
 
   modal.style.display = 'flex';
 }
@@ -1871,9 +1893,10 @@ function showMainTab(id, el) {
   if (id === 'sport') {
     var active = document.querySelector('#section-sport .sub-tab.active') || document.querySelector('#section-sport .sub-tab');
     if (active) active.click();
+    if (window.renderSeanceOrder) window.renderSeanceOrder();
   }
   if (id === 'dashboard') { setTimeout(initDashboard, 50); if (window.renderKneeBar) window.renderKneeBar(); }
-  if (id === 'resultats') { renderPhotos(); if (window.renderBody) window.renderBody(); if (window.renderSeanceHistory) window.renderSeanceHistory(); }
+  if (id === 'resultats') { renderPhotos(); if (window.renderBody) window.renderBody(); if (window.renderSeanceHistory) window.renderSeanceHistory(); if (window.renderProgress) window.renderProgress(); }
 }
 
 function showSubTab2(section, id, el) {
@@ -2069,22 +2092,27 @@ function skipSerieTimer(exId) {
   }
 }
 
+function _swUnit(txt){ return (/\d\s*s\b/.test(txt) && !/kg/i.test(txt)) ? ' s' : ' kg'; }
 function adjustWeight(exId, idx, delta, defaultVal) {
   var el = document.getElementById('sw_' + exId + '_' + idx);
   if (!el) return;
-  var num = parseFloat(el.textContent);
+  var txt = el.textContent.trim();
+  var unit = _swUnit(txt.length ? txt : (defaultVal||''));
+  var num = parseFloat(txt);
   if (isNaN(num)) { el.textContent = defaultVal; return; }
   var newVal = Math.max(0, Math.round((num + delta) * 2) / 2);
-  el.textContent = newVal + ' kg';
+  el.textContent = newVal + unit;
   try { localStorage.setItem('adele_w_' + exId + '_' + idx, newVal); } catch(e) {}
 }
 
 function editWeight(exId, idx, defaultVal) {
   var el = document.getElementById('sw_' + exId + '_' + idx);
   if (!el) return;
-  var val = prompt('Poids (kg) :', parseFloat(el.textContent) || '');
+  var txt = el.textContent.trim();
+  var unit = _swUnit(txt.length ? txt : (defaultVal||''));
+  var val = prompt(unit===' s' ? 'Dur\u00e9e (secondes) :' : 'Poids (kg) :', parseFloat(txt) || '');
   if (val !== null && !isNaN(parseFloat(val))) {
-    el.textContent = parseFloat(val) + ' kg';
+    el.textContent = parseFloat(val) + unit;
     try { localStorage.setItem('adele_w_' + exId + '_' + idx, parseFloat(val)); } catch(e) {}
   }
 }
@@ -2105,8 +2133,19 @@ function closeJournal() {
 }
 
 function setRating(val, el) {
-  document.querySelectorAll('.rating-btn').forEach(function(b) { b.classList.remove('selected'); });
+  document.querySelectorAll('.rating-btn').forEach(function(b) {
+    b.classList.remove('selected');
+    b.style.borderColor = 'var(--sep)';
+    b.style.color = 'var(--text2)';
+    b.style.background = 'transparent';
+    b.style.fontWeight = '600';
+  });
   el.classList.add('selected');
+  el.style.borderColor = 'var(--accent)';
+  el.style.color = 'var(--accent)';
+  el.style.background = 'rgba(216,255,0,.12)';
+  el.style.fontWeight = '800';
+  window._lastRating = val;
 }
 
 function saveJournal() {
@@ -2131,9 +2170,44 @@ function finishSeance(seance) {
     g.xp = (g.xp || 0) + 100;
     try { localStorage.setItem('adele_game_v1', JSON.stringify(g)); } catch(e) {}
   }
+  recordProgress(seance);
   showBilan(seance, totalEx, doneExCount, deja);
   if (window.renderRewards) window.renderRewards();
   if (window.checkBadgeUnlocks) window.checkBadgeUnlocks();
+  if (window.renderSeanceOrder) window.renderSeanceOrder();
+}
+
+// Enregistre la charge (kg) ou la duree (s) de chaque exercice de la seance
+function recordProgress(seance, dateStr){
+  var wo = document.getElementById('w' + seance);
+  if (!wo) return;
+  var store; try { store = JSON.parse(localStorage.getItem('adele_progress') || '{}'); } catch(e) { store = {}; }
+  var today = dateStr || new Date().toISOString().slice(0,10);
+  wo.querySelectorAll('.ex-row').forEach(function(row){
+    var exId = row.id; if (!exId) return;
+    var nameEl = row.querySelector('.ex-name');
+    var name = exId;
+    if (nameEl) { var c = nameEl.cloneNode(true); var bd = c.querySelector('.ex-badge'); if (bd) bd.remove(); name = c.textContent.replace(/\s+/g,' ').trim(); }
+    var vals = [];
+    row.querySelectorAll('[id^="sw_"]').forEach(function(el){
+      var t = el.textContent.trim();
+      var mkg = t.match(/^([0-9.]+)\s*kg/i);
+      var msec = t.match(/^([0-9.]+)\s*s\b/i);
+      if (mkg) vals.push({v: parseFloat(mkg[1]), u: 'kg'});
+      else if (msec) vals.push({v: parseFloat(msec[1]), u: 's'});
+    });
+    if (!vals.length) return;
+    var u = vals[0].u;
+    var maxv = vals.reduce(function(a,b){ return b.v > a ? b.v : a; }, 0);
+    if (!store[exId]) store[exId] = { name: name, unit: u, points: [] };
+    store[exId].name = name; store[exId].unit = u;
+    var pts = store[exId].points;
+    var last = pts[pts.length - 1];
+    if (last && last.d === today) last.v = maxv;
+    else pts.push({ d: today, v: maxv });
+    if (pts.length > 60) store[exId].points = pts.slice(-60);
+  });
+  try { localStorage.setItem('adele_progress', JSON.stringify(store)); } catch(e) {}
 }
 
 // ── POIDS ──
@@ -2217,7 +2291,7 @@ function renderPhotos(photos) {
   if (!gallery) return;
   if (!photos.length) { gallery.innerHTML = '<div style="text-align:center;padding:20px;color:var(--text2)">Tes photos apparaîtront ici</div>'; return; }
   gallery.innerHTML = photos.slice().reverse().slice(0, 6).map(function(p) {
-    var d = new Date(p.date).toLocaleDateString('fr-FR', {month:'long', year:'numeric'});
+    var d = new Date(p.date).toLocaleDateString('fr-FR', {day:'numeric', month:'long', year:'numeric'});
     return '<div style="display:inline-block;width:48%;margin:1%;vertical-align:top"><img src="' + p.data + '" style="width:100%;border-radius:10px;aspect-ratio:3/4;object-fit:cover"><div style="font-size:10px;text-align:center;color:var(--text2);margin-top:4px">' + p.type + ' · ' + d + '</div></div>';
   }).join('');
 }
@@ -2909,7 +2983,13 @@ document.addEventListener('DOMContentLoaded', function() {
     if(!log.length){ el.innerHTML='<div style="padding:24px 0;text-align:center;font-size:13px;color:var(--text2)">Tes s\u00e9ances termin\u00e9es appara\u00eetront ici.</div>'; return; }
     var names={A:'S\u00e9ance A \u00b7 Jambes & stabilit\u00e9', B:'S\u00e9ance B \u00b7 Haut du corps', C:'S\u00e9ance C \u00b7 Full body'};
     var rows=log.slice().reverse().map(function(e){
-      var d=new Date(e.date).toLocaleDateString('fr-FR',{weekday:'short',day:'numeric',month:'short'});
+      var schedDow={A:1,B:3,C:5}; // Lundi / Mercredi / Vendredi
+      var base=new Date(e.date);
+      var mondayOff=(base.getDay()+6)%7;
+      var monday=new Date(base); monday.setDate(base.getDate()-mondayOff);
+      var want=schedDow[e.type]||1;
+      var disp=new Date(monday); disp.setDate(monday.getDate()+(want-1));
+      var d=disp.toLocaleDateString('fr-FR',{weekday:'short',day:'numeric',month:'short'});
       return '<div class="hist-row"><span class="hist-w">'+(names[e.type]||('S\u00e9ance '+e.type))+'</span><span class="hist-date">'+d+'</span></div>';
     }).join('');
     el.innerHTML='<div class="card" style="margin:0">'+rows+'</div>';
@@ -2917,6 +2997,130 @@ document.addEventListener('DOMContentLoaded', function() {
   function initExtra(){ if(window.renderKneeBar)window.renderKneeBar(); }
   if(document.readyState!=='loading') initExtra(); else document.addEventListener('DOMContentLoaded', initExtra);
 })();
+</script>
+<script>
+(function(){
+  function mondayStart(){ var n=new Date(); var d=(n.getDay()+6)%7; var m=new Date(n); m.setHours(0,0,0,0); m.setDate(n.getDate()-d); return m; }
+  window.seanceDoneThisWeek=function(t){
+    var log; try{ log=JSON.parse(localStorage.getItem('adele_seances_log')||'[]'); }catch(e){ return false; }
+    var m=mondayStart();
+    return log.some(function(e){ return e.type===t && new Date(e.date)>=m; });
+  };
+  // Remet wB/wC dans #sp-seances (nesting historique) pour pouvoir les trier
+  function fixNesting(){
+    var sp=document.getElementById('sp-seances'); if(!sp) return;
+    ['wB','wC'].forEach(function(id){ var el=document.getElementById(id); if(el && el.parentElement!==sp) sp.appendChild(el); });
+  }
+  // La séance A a un HTML mal formé : 3 exercices + les boutons sont hors du .wo-body.
+  // On les remet dans le .wo-body pour qu'elle se replie entièrement (comme B et C).
+  function repairSeanceA(){
+    var wA=document.getElementById('wA'); if(!wA) return;
+    var body=wA.querySelector('.wo-body'); if(!body) return;
+    Array.prototype.slice.call(wA.children).forEach(function(c){
+      if(c!==body && !c.classList.contains('wo-head')) body.appendChild(c);
+    });
+  }
+  window.renderSeanceOrder=function(){
+    var sp=document.getElementById('sp-seances'); if(!sp) return;
+    fixNesting();
+    repairSeanceA();
+    ['A','B','C'].forEach(function(t){
+      var el=document.getElementById('w'+t); if(!el) return;
+      var old=el.querySelector('.wo-done-badge'); if(old) old.remove();
+      var eyebrow=el.querySelector('.wo-eyebrow');
+      if(window.seanceDoneThisWeek(t)){
+        el.classList.add('done-week');
+        el.classList.remove('open');
+        var hdr=document.getElementById('seanceHeader'+t); if(hdr) hdr.style.display='none';
+        if(eyebrow){ var b=document.createElement('span'); b.className='wo-done-badge'; b.textContent='\u2713 Termin\u00e9e'; eyebrow.appendChild(b); }
+      } else {
+        el.classList.remove('done-week');
+      }
+    });
+    // À venir d'abord, faites en bas
+    var order=['A','B','C'];
+    var todo=order.filter(function(t){ return !window.seanceDoneThisWeek(t); });
+    var done=order.filter(function(t){ return window.seanceDoneThisWeek(t); });
+    todo.concat(done).forEach(function(t){ var el=document.getElementById('w'+t); if(el){ el.style.display=''; sp.appendChild(el); } });
+  };
+  function init(){ window.renderSeanceOrder(); }
+  if(document.readyState!=='loading') init(); else document.addEventListener('DOMContentLoaded', init);
+})();
+</script>
+<script>
+window.renderProgress = function(){
+  var el = document.getElementById("progress-list"); if (!el) return;
+  var store; try { store = JSON.parse(localStorage.getItem("adele_progress") || "{}"); } catch(e) { store = {}; }
+  var ids = Object.keys(store).filter(function(k){ return store[k].points && store[k].points.length; });
+  if (!ids.length){
+    el.innerHTML = "<div style='padding:24px 0;text-align:center;font-size:13px;color:var(--text2)'>Valide tes séances : ta charge et ta durée par exercice apparaîtront ici avec la courbe d'évolution.</div>";
+    return;
+  }
+  ids.sort(function(a,b){ return store[b].points.length - store[a].points.length; });
+  el.innerHTML = ids.map(function(id){
+    var e = store[id], pts = e.points, vals = pts.map(function(p){ return p.v; });
+    var first = vals[0], last = vals[vals.length-1];
+    var delta = Math.round((last - first) * 2) / 2;
+    var n = vals.length;
+    var deltaHtml = "";
+    if (n > 1 && delta !== 0){
+      var up = delta > 0;
+      deltaHtml = "<span style='font-size:12px;font-weight:800;color:" + (up?"var(--eau)":"var(--rose)") + "'>" + (up?"▲ +":"▼ ") + delta + " " + e.unit + "</span>";
+    }
+    // graphique
+    var W = 300, H = 66, padX = 6, padTop = 10, padBot = 8;
+    var mn = Math.min.apply(null, vals), mx = Math.max.apply(null, vals), rng = (mx - mn) || 1;
+    var xy = function(i){ var x = padX + (n===1 ? W/2 : (i/(n-1))*(W - 2*padX)); var y = padTop + (1 - (vals[i]-mn)/rng)*(H - padTop - padBot); return [x,y]; };
+    var chart;
+    if (n > 1){
+      var pline = vals.map(function(v,i){ var p=xy(i); return p[0].toFixed(1)+","+p[1].toFixed(1); }).join(" ");
+      var area = "6,"+(H-padBot)+" " + pline + " " + (W-padX)+","+(H-padBot);
+      var lastP = xy(n-1);
+      var gid = "g_"+id;
+      chart = "<svg viewBox='0 0 "+W+" "+H+"' width='100%' height='"+H+"' preserveAspectRatio='none' style='display:block'>" +
+        "<defs><linearGradient id='"+gid+"' x1='0' y1='0' x2='0' y2='1'>" +
+        "<stop offset='0%' stop-color='var(--accent)' stop-opacity='.28'/>" +
+        "<stop offset='100%' stop-color='var(--accent)' stop-opacity='0'/></linearGradient></defs>" +
+        "<polygon points='"+area+"' fill='url(#"+gid+")'/>" +
+        "<polyline points='"+pline+"' fill='none' stroke='var(--accent)' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'/>" +
+        "<circle cx='"+lastP[0].toFixed(1)+"' cy='"+lastP[1].toFixed(1)+"' r='4' fill='var(--accent)'/>" +
+        "<circle cx='"+lastP[0].toFixed(1)+"' cy='"+lastP[1].toFixed(1)+"' r='7' fill='none' stroke='var(--accent)' stroke-opacity='.3' stroke-width='2'/>" +
+        "</svg>";
+    } else {
+      chart = "<div style='height:66px;display:flex;align-items:center;justify-content:center;font-size:11px;color:var(--text3);font-weight:600;letter-spacing:.04em'>— point de départ, reviens après ta prochaine séance —</div>";
+    }
+    return "<div style='background:var(--card);border:1px solid var(--sep);border-radius:16px;padding:14px 16px 8px;margin-bottom:12px'>" +
+      "<div style='display:flex;justify-content:space-between;align-items:flex-start;gap:10px;margin-bottom:6px'>" +
+        "<div style='font-size:14px;font-weight:700;color:var(--text);flex:1;min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis'>" + e.name + "</div>" +
+        "<div style='text-align:right;flex-shrink:0'>" +
+          "<div style='font-size:24px;font-weight:900;color:var(--accent);letter-spacing:-.5px;line-height:1'>" + last + "<span style='font-size:12px;font-weight:600;color:var(--text2)'> "+e.unit+"</span></div>" +
+          (deltaHtml?"<div style='margin-top:3px'>"+deltaHtml+"</div>":"") +
+        "</div>" +
+      "</div>" +
+      chart +
+    "</div>";
+  }).join("");
+};
+</script>
+<script>
+// Récupère les séances déjà validées (historique) dans la progression — une seule fois
+document.addEventListener('DOMContentLoaded', function(){
+  setTimeout(function(){
+    try{
+      if (localStorage.getItem('adele_prog_backfill_v1')) return;
+      var log = JSON.parse(localStorage.getItem('adele_seances_log') || '[]');
+      if (log.length && typeof recordProgress === 'function'){
+        // du plus ancien au plus récent, pour un ordre de points correct
+        log.slice().sort(function(a,b){ return new Date(a.date) - new Date(b.date); }).forEach(function(e){
+          var dateStr = new Date(e.date).toISOString().slice(0,10);
+          recordProgress(e.type, dateStr);
+        });
+      }
+      localStorage.setItem('adele_prog_backfill_v1','1');
+      if (window.renderProgress) window.renderProgress();
+    }catch(err){}
+  }, 400);
+});
 </script>
 </body>
 </html>
